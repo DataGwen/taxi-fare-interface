@@ -1,13 +1,12 @@
-//let taxiFareApiUrl = 'http://localhost:8001/predict'; // replace with your API endpoint
-let taxiFareApiUrl = 'https://taxi-fare-predict-in-prod-amd64-ax5ukvkh2q-ew.a.run.app/predict'; // replace with your API endpoint
+let taxiFareApiUrl = 'http://localhost:8001/predict'; // replace with your API endpoint
 const centralCoordinates = [-74.00597, 40.71427]; // starting position [lng, lat]
 
 if (window.location.href.includes('https://taxifare.lewagon.com')) {
   taxiFareApiUrl = 'https://taxifare.lewagon.ai/predict';
 }
 
-//mapboxgl.accessToken = 'pk.eyJ1IjoiYmF0Y2g4MTJibSIsImEiOiJjbDM0bmVnYWcwNW14M2NtcTlpNGRjaDlvIn0.2HyAbMwbDVoeqih8eAunTw';
 mapboxgl.accessToken = 'pk.eyJ1Ijoia3Jva3JvYiIsImEiOiJja2YzcmcyNDkwNXVpMnRtZGwxb2MzNWtvIn0.69leM_6Roh26Ju7Lqb2pwQ';
+
 const displayMap = (start, stop) => {
   const map = new mapboxgl.Map({
     container: 'map',
@@ -186,20 +185,12 @@ const predict = () => {
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      // const data = {
-      //   "pickup_latitude": parseFloat(document.getElementById('pickup_latitude').value) || 40.747,
-      //   "pickup_longitude": parseFloat(document.getElementById('pickup_longitude').value) || -73.989,
-      //   "dropoff_latitude": parseFloat(document.getElementById('dropoff_latitude').value) || 40.802,
-      //   "dropoff_longitude": parseFloat(document.getElementById('dropoff_longitude').value) || -73.956,
-      //   "passenger_count": parseInt(document.getElementById('passenger_count').value) || 2,
-      //   "pickup_datetime": document.getElementById('pickup_datetime').value
-      // };
       const data = {
-        "lat1": parseFloat(document.getElementById('pickup_latitude').value) || 40.747,
-        "lon1": parseFloat(document.getElementById('pickup_longitude').value) || -73.989,
-        "lat2": parseFloat(document.getElementById('dropoff_latitude').value) || 40.802,
-        "lon2": parseFloat(document.getElementById('dropoff_longitude').value) || -73.956,
-        "passcount": parseInt(document.getElementById('passenger_count').value) || 2,
+        "pickup_latitude": parseFloat(document.getElementById('pickup_latitude').value) || 40.747,
+        "pickup_longitude": parseFloat(document.getElementById('pickup_longitude').value) || -73.989,
+        "dropoff_latitude": parseFloat(document.getElementById('dropoff_latitude').value) || 40.802,
+        "dropoff_longitude": parseFloat(document.getElementById('dropoff_longitude').value) || -73.956,
+        "passenger_count": parseInt(document.getElementById('passenger_count').value) || 2,
         "pickup_datetime": document.getElementById('pickup_datetime').value
       };
       let query = []
